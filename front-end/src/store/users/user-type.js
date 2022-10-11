@@ -1,0 +1,6 @@
+const USER_ACTION_TYPES = {
+    SET_CURRENT_USER: 'SET_USER',
+    SET_ERROR: 'SET_ERROR',
+  };
+  
+  export default USER_ACTION_TYPES;

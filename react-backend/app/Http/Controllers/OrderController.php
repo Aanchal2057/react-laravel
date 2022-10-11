@@ -7,26 +7,20 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('delivery-form');
-    // }
+  
 
     public function store(Request $request)
     {
-
-        $cart = session()->get('cart');
-
         $order = Order::create([
             'user_id' => $request->id,
             'name' => $request->name,
             'phoneno' => $request->phoneno,
             'email' => $request->email,
             'address' => $request->address,
-            'total' => session()->get('total'),
+            'total' => $request->total,
         ]);
 
-        foreach ($cart as $cart) {
+        foreach ($request->orderItems as $cart) {
             OrderProduct::create([
                 'order_id' => $order->id,
                 'product_id' => $cart['id'],
@@ -34,16 +28,8 @@ class OrderController extends Controller
                 'price'=> $cart['price'],
             ]);
         }
-        // dd($request);
 
-        session()->forget('cart');
-        session()->forget('total');
-
-        return redirect('/');
-        $this->sendOredrConfirmationMail($order);
+        return ['success'=> 'successfull'];
     }
-    public function sendOredrConfirmationMail($order){
-        dd("hello");
-        Mail::to($order->email)->send(new OrderMail($order));
-    }
+    
 }
