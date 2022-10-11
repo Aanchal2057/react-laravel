@@ -5,12 +5,12 @@ import Table from 'react-bootstrap/Table';
 const Footer = () => {
   return (
    <>
-    <div class="d-flex justify-content-between p-5">
-    <div class="">
+    <div className="d-flex justify-content-between p-5">
+    <div className="">
             <img
                 src="./download.png"
                 alt=""
-                class=""
+                className=""
           height="90px"
                 width="90px"
             
@@ -22,55 +22,55 @@ const Footer = () => {
     </p>
             <p><strong>Phone: </strong> +014158602, 9841319037</p>
             <p><strong>Hours:</strong>8:00-5:00, Sunday-Friday</p>
-            <div class="">
+            <div className="">
                 <h4>Follow Us</h4>
-                <div class="">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-whatsapp"></i>
+                <div className="">
+                    <i className="fab fa-facebook-f"></i>
+                    <i className="fab fa-twitter"></i>
+                    <i className="fab fa-instagram"></i>
+                    <i className="fab fa-whatsapp"></i>
                 </div>
             </div>
         </div>
-        <div class=" d-flex flex-column">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">About</a>
+        <div className=" d-flex flex-column">
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Delivery Information</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Delivery Information</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Privacy Policy</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Privacy Policy</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Teams & Conditions</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Teams & Conditions</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Contact Us</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Contact Us</a>
                 </li>
             </ul>
         </div>
     
-        <div class=" d-flex flex-column">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-dark text-dark" href="#">My Account</a>
+        <div className=" d-flex flex-column">
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <a className="nav-link text-dark text-dark" href="#">My Account</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Sign In</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Sign In</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">View Cart</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">View Cart</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Privacy Policy</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Privacy Policy</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Track My Order</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Track My Order</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Help</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">Help</a>
                 </li>
             </ul>
         </div>

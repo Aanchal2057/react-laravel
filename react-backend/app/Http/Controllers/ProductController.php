@@ -22,8 +22,9 @@ class ProductController extends Controller
         return response()->with($data);
     } 
     public function show($slug){
-        return view('product-detail',[
-            'product' => Product::where('slug',$slug)->first()
-        ]);
+         return Product::where('slug', $slug)->firstOrFail();
+        // return Product::find($id);
+
     }
+   
 }

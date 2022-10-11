@@ -1,10 +1,15 @@
-import React from 'react'
+import React from 'react';
+import Products from '../Products';
 
 const Featuredproduct = () => {
   return (
+    <>
     <div>
-      Featured Products
+      <h5 className="m-2 p-5">Featured Products</h5>
     </div>
+    <Products/>
+    </>
+    
   )
 }
 
