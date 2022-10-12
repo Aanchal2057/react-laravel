@@ -9,9 +9,9 @@ export const userReducer = (state = USER_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case USER_ACTION_TYPES.SET_USER:
+    case USER_ACTION_TYPES.SET_CURRENT_USER:
       return { ...state, currentUser: payload };
-    case USER_ACTION_TYPES.SET_ERROR:
+    case USER_ACTION_TYPES.SET_USER_ERROR:
       return { ...state, error: payload };
     default:
       return state;

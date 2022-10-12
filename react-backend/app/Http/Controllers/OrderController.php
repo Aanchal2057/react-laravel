@@ -9,7 +9,7 @@ class OrderController extends Controller
 {
   
 
-    public function store(Request $request)
+    public function submit(Request $request)
     {
         $order = Order::create([
             'user_id' => $request->id,
@@ -19,17 +19,28 @@ class OrderController extends Controller
             'address' => $request->address,
             'total' => $request->total,
         ]);
+    //  dd($request->orderItems);
+    // $orderItems = array();
+       
+        die($request->orderItems);
+        // if(is_array($orderItems)||is_object($orderItems)){
+            foreach ($orderItems as $cart) {
+                OrderProduct::create([
+                    'order_id' => $order->id,
+                    'product_id' => $cart['id'],
+                    'quantity' => $cart['quantity'],
+                    'price'=> $cart['price'],
+                ]);
+                return ['success'=> 'success'];
+               
+        //    }
 
-        foreach ($request->orderItems as $cart) {
-            OrderProduct::create([
-                'order_id' => $order->id,
-                'product_id' => $cart['id'],
-                'quantity' => $cart['quantity'],
-                'price'=> $cart['price'],
-            ]);
         }
+        
+      
 
-        return ['success'=> 'successfull'];
     }
+   
+    
     
 }

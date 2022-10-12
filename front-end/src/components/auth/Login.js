@@ -1,64 +1,48 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import axios from "axios";
 import { setCurrentUser } from "../../store/users/user-action";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const navigate=useNavigate(); 
-  const dispatch=useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const submit=(e)=>{
-    e.preventDefault();
- 
-    async function fetchData() {
-     const URL = 'http://127.0.0.1:8000/api/login';
-     const config = { headers: { 'Content-Type': 'application/json' } };
-     const response = await axios.post(URL,{email:email,password:password},config);
-     dispatch(setCurrentUser(response));
-    
-     
-   }
-   navigate('/');
-   fetchData();
-   }
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-  return (
-    <div>
-      <div className="container w-50 my-5">
-        <Form onSubmit={submit}>
-          <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Button variant="warning" type="submit" className="text-white">
-            Submit
-          </Button>
-        </Form>
-      </div>
-    </div>
-  );
-};
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+   
+
+    const login = async() => {
+        let user = {email, password};
+        let result = await fetch("http://127.0.0.1:8000/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(user)
+        });
+        result = await result.json();
+        dispatch(setCurrentUser(result));
+        navigate('/');
+    }
+
+    return (
+        <>
+            <div className="container w-50 my-5">
+                <div className="mb-3 mt-3">
+                    <label htmlFor="email" className="form-label">Email:</label>
+                    <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" onChange={(e) => setEmail(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password:</label>
+                    <input type="password" className="form-control" id="password" placeholder="Enter password" name="password" onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <button className="btn btn-warning text-white" onClick={login}>Submit</button>
+            </div>
+        </>
+    );
+}
 
 export default Login;

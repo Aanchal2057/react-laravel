@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { clearOrder, clearTotal } from "../../store/order/order-action";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/users/user-selector";
 
-const Payment = ({ orderItems, total, user }) => {
+
+const Checkout = ({ orderItems, total }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const user = useSelector(selectCurrentUser);
   const [id, setId] = useState(user ? user.id : null);
   const [name, setName] = useState(user ? user.name : "");
   const [email, setEmail] = useState(user ? user.email : "");
@@ -16,7 +18,8 @@ const Payment = ({ orderItems, total, user }) => {
 
   const order = async() => {
       let order = { name, email, phoneno, address, total, id, orderItems};
-      let result = await fetch("http://127.0.0.1:8000/api/order", {
+      console.log({ name, email, phoneno, address, total, id, orderItems});
+      let response = await fetch("http://127.0.0.1:8000/api/submit", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
@@ -24,7 +27,8 @@ const Payment = ({ orderItems, total, user }) => {
           },
           body: JSON.stringify(order)
       });
-      result = await result.json();
+      response = await response.json();
+      console.log(response);
       dispatch(clearTotal());
       dispatch(clearOrder());
       navigate('/');
@@ -38,7 +42,7 @@ const Payment = ({ orderItems, total, user }) => {
             {!user && (
               <>
                 <div>
-                  <a href="/login">Login</a>
+                  <a href="/register">Register</a>
                 </div>
                 OR
                 <div className="mb-3 mt-3">
@@ -122,7 +126,7 @@ const Payment = ({ orderItems, total, user }) => {
             {orderItems.map((orderItem) => {
               return (
                 <div
-                  className="row bg-warning rounded-3 my-3 mx-1 text-white px-2 py-2"
+                  className="row bg-warning rounded-3 my-3 mx-1  px-2 py-2"
                   key={orderItem.id}
                 >
                   <div className="col-5">{orderItem.name}</div>
@@ -135,7 +139,7 @@ const Payment = ({ orderItems, total, user }) => {
               );
             })}
 
-            <div className="row bg-warning rounded-3 my-3 mx-1 text-white px-2 py-2">
+            <div className="row bg-warning rounded-3 my-3 mx-1  px-2 py-2">
               <div className="col-10">Total</div>
               <div className="col-2">${total}</div>
             </div>
@@ -146,4 +150,4 @@ const Payment = ({ orderItems, total, user }) => {
   );
 };
 
-export default Payment;
+export default Checkout;
